@@ -1,0 +1,11 @@
+.markerContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    text-shadow:
+            -1px -1px 0 white,
+            1px -1px 0 white,
+            -1px 1px 0 white,
+            1px 1px 0 white;
+}
