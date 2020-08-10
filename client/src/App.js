@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import ReactMapGl, { Marker } from 'react-map-gl';
+import ReactMapGl, { Marker, Popup } from 'react-map-gl';
+import markerImg from './marker.png';
 
 import './App.css';
 
@@ -11,6 +12,7 @@ const App = () => {
     longtitude: -122,
     zoom: 3,
   };
+  const [openedPopups, setOpenedPopups] = useState({});
   const [logEntries, setLogEntries] = useState([]);
   const [viewport, setViewport] = useState(initialViewport);
 
@@ -51,36 +53,49 @@ const App = () => {
       >
         {logEntries.length &&
           logEntries.map((entry) => (
-            <Marker
-              key={entry._id}
-              latitude={entry.latitude}
-              longitude={entry.longitude}
-              offsetLeft={viewport.zoom / 2}
-              offsetTop={viewport.zoom / 2}
-            >
-              <div className="markerContent">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  style={{
-                    width: `calc(${viewport.zoom} / 4px`,
-                    height: `calc( ${viewport.zoom} / 4px`,
-                  }}
-                  width="36"
-                  height="36"
-                  viewBox="0 0 24 24"
-                  fill="white"
-                  stroke="red"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="feather feather-map-pin"
+            <>
+              <Marker
+                key={entry._id}
+                latitude={entry.latitude}
+                longitude={entry.longitude}
+              >
+                <div
+                  className="markerContent"
+                  onClick={() => setOpenedPopups({ [entry._id]: true })}
                 >
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                  <circle cx="12" cy="10" r="3"></circle>
-                </svg>
-                <span>{entry.title}</span>
-              </div>
-            </Marker>
+                  <img
+                    style={{
+                      width: `24px`,
+                      height: `24px`,
+                    }}
+                    src={markerImg}
+                    alt="marker"
+                    className="marker"
+                  />
+                  <span>{entry.title}</span>
+                </div>
+              </Marker>
+              {openedPopups[entry._id] ? (
+                <Popup
+                  latitude={entry.latitude}
+                  longitude={entry.longitude}
+                  closeButton={true}
+                  closeOnClick={false}
+                  dynamicPosition={true}
+                  anchor="top"
+                  onClose={() => setOpenedPopups({ [entry._id]: false })}
+                >
+                  <div className="popup">
+                    <h3>{entry.title}</h3>
+                    <p>{entry.comments}</p>
+                    <small>
+                      Visited on{' '}
+                      {new Date(entry.visitDate).toLocaleDateString()}
+                    </small>
+                  </div>
+                </Popup>
+              ) : null}
+            </>
           ))}
       </ReactMapGl>
     </>

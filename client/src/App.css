@@ -1,11 +1,21 @@
 .markerContent {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
     color: black;
     text-shadow:
             -1px -1px 0 white,
             1px -1px 0 white,
             -1px 1px 0 white,
             1px 1px 0 white;
+}
+
+.marker {
+    width: 24px;
+    height: 24px;
+    transform: translate(-50%, -100%);
+}
+
+.popup {
+    text-align: left;
+    max-width: 300px;
 }
