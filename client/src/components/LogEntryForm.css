@@ -1,0 +1,19 @@
+.logEntry {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-bottom: 1rem;
+}
+
+.actions {
+    margin-top: 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}

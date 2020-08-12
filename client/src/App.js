@@ -5,6 +5,7 @@ import cn from 'classnames';
 import './App.css';
 
 import { listLogEntries } from './api';
+import LogEntryForm from './components/LogEntryForm';
 
 const App = () => {
   const initialViewport = {
@@ -150,12 +151,14 @@ const App = () => {
               latitude={addEntryLocation.latitude}
               longitude={addEntryLocation.longitude}
               closeButton={true}
+              closeOnClick={false}
               dynamicPosition={true}
               onClose={() => setAddEntryLocation(null)}
               anchor="top"
             >
               <div className="popup">
                 <h3>Новая запись</h3>
+                <LogEntryForm />
               </div>
             </Popup>
           </>
