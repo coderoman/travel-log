@@ -1,42 +1,46 @@
 .markerContent {
-    display: flex;
-    flex-direction: column;
-    color: black;
-    text-shadow:
-            -1px -1px 0 white,
-            1px -1px 0 white,
-            -1px 1px 0 white,
-            1px 1px 0 white;
+  display: flex;
+  font-size: 1.3rem;
+  flex-direction: column;
+  color: red;
+  text-shadow: -2px -2px 0 white, 2px -2px 0 white, -2px 2px 0 white,
+    2px 2px 0 white;
 }
 
 .marker {
-    width: 24px;
-    height: 24px;
-    transform: translate(-50%, -100%);
-    transition: all .3s ease;
+  width: 24px;
+  height: 24px;
+  transform: translate(-50%, -100%);
+  transition: all 0.3s ease;
 }
 
 .marker.red {
-    fill: red
+  fill: red;
 }
 .marker.yellow {
-    fill: blueviolet;
+  fill: blueviolet;
+}
+
+.error {
+  color: red;
 }
 
 .down {
-    position: relative;
-    animation-name: down;
-    animation-duration: .3s;
+  position: relative;
+  animation-name: down;
+  animation-duration: 0.3s;
 }
 
 .popup {
-    text-align: left;
-    max-width: 300px;
+  text-align: left;
+  max-width: 300px;
 }
 
 @keyframes down {
-    0% { top: -30px}
-    100% { top: 0}
-
-
+  0% {
+    top: -30px;
+  }
+  100% {
+    top: 0;
+  }
 }

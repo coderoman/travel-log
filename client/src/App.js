@@ -36,10 +36,14 @@ const App = () => {
     );
   }, []);
 
+  const getEntries = async () => {
+    const logEntries = await listLogEntries();
+    setLogEntries(logEntries.entries);
+  };
+
   useEffect(() => {
     (async () => {
-      const logEntries = await listLogEntries();
-      setLogEntries(logEntries.entries);
+      getEntries();
     })();
   }, []);
 
@@ -158,7 +162,13 @@ const App = () => {
             >
               <div className="popup">
                 <h3>Новая запись</h3>
-                <LogEntryForm />
+                <LogEntryForm
+                  onSuccess={() => {
+                    setAddEntryLocation(null);
+                    getEntries();
+                  }}
+                  location={addEntryLocation}
+                />
               </div>
             </Popup>
           </>
