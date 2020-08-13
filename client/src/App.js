@@ -69,12 +69,8 @@ const App = () => {
       >
         {logEntries.length &&
           logEntries.map((entry) => (
-            <>
-              <Marker
-                key={entry._id}
-                latitude={entry.latitude}
-                longitude={entry.longitude}
-              >
+            <React.Fragment key={entry._id}>
+              <Marker latitude={entry.latitude} longitude={entry.longitude}>
                 <div
                   className="markerContent"
                   onClick={() => setOpenedPopups({ [entry._id]: true })}
@@ -122,7 +118,7 @@ const App = () => {
                   </div>
                 </Popup>
               ) : null}
-            </>
+            </React.Fragment>
           ))}
         {addEntryLocation ? (
           <>
