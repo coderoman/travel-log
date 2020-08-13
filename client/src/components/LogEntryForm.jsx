@@ -20,6 +20,7 @@ const LogEntryForm = ({ location, onSuccess }) => {
       onSuccess();
     } catch (error) {
       setError(error.message);
+      setLoading(false);
     }
   };
 
